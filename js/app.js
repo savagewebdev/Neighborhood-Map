@@ -1,6 +1,6 @@
 (function() {
 
-  var viewModel = {
+  var ViewModel = function() {
     locales: [
       {title: 'Secret Beach', location: {lat: 26.871856, lng: -80.049845}},
       {title: 'Dockside Promenade', location: {lat: 26.946291, lng: -80.082824}},
@@ -9,6 +9,7 @@
       {title: 'Midweek Gathering', location: {lat: 26.952620, lng: -80.138577}}
     ] // Hardcoded locations but no markers within viewModel.
   }; // viewModel
+  var viewModel = new ViewModel();
   ko.applyBindings(viewModel);
 
 });
