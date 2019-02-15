@@ -8,6 +8,10 @@ $(function() {
       {title: 'Fun-N-Fellowship Locale', location: {lat: 26.930736, lng: -80.123895}},
       {title: 'Midweek Gathering', location: {lat: 26.952620, lng: -80.138577}}
     ] // Hardcoded locations but no markers within viewModel.
+    locales.foreach(function(pos) {
+      this.pos = pos.lat + "" + pos.lng;
+      new google.maps.Marker({position: pos, map: map});
+    });
   }; // viewModel
   ko.applyBindings(viewModel);
 
