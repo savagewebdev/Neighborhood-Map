@@ -7,12 +7,18 @@ $(function() {
       {title: 'Sunnyside Urban Study Spot', location: {lat: 26.713548, lng: -80.055889}},
       {title: 'Fun-N-Fellowship Locale', location: {lat: 26.930736, lng: -80.123895}},
       {title: 'Midweek Gathering', location: {lat: 26.952620, lng: -80.138577}}
-    ] // Hardcoded locations but no markers within viewModel.
-    // mark: function(pos) {
-    //
-    // }
+    ], // Hardcoded locations but no markers within viewModel.
+    mark: locales.foreach(function(location) {
+        console.log(location)
+      });
+    }
 
-  }; // viewModel
+
+
+      // var marker = new google.maps.Marker({position: latLng, map: map});
+
+
+   // viewModel
   ko.applyBindings(viewModel);
 
 });
