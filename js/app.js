@@ -8,10 +8,8 @@ $(function() {
       {title: 'Fun-N-Fellowship Locale', location: {lat: 26.930736, lng: -80.123895}},
       {title: 'Midweek Gathering', location: {lat: 26.952620, lng: -80.138577}}
     ], // Hardcoded locations but no markers within viewModel.
-    mark: locales.foreach(function(location) {
-        console.log(location)
-      });
-    }
+
+    };
 
 
 
