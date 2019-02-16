@@ -15,13 +15,13 @@
       <h1>Robin's Tubular/Radical Navigational Map App!</h1>
     </div>
     <div class="dropdown">
-      <a id="menu" onclick="myFunction()" class="dropbtn"> // The hamburger button = the dropdown button.
+      <a id="menu" data-bind="click: myFunction()" class="dropbtn"> // The hamburger button = the dropdown button.
         //svg or unicode
           //link placeholder
       </a>
-      <div id="myDropdown" data-bind="foreach: newArray" class="dropdown-content">
-        <input id="myInput" name="search-keyword" type="text" placeholder="Search..." reonkeyup="filterFunction()" required>
-        <a href="#" data-bind="text: $data"></a>
+      <div id="myDropdown" data-bind="foreach: newArray" class="dropdown-content"> // Remove placeholder when image search is conducted via yelp.
+        <input id="myInput" name="search-keyword" type="text" placeholder="Search..." data-bind="textInput: placeholder" reonkeyup="filterFunction()" required>
+        <a class="marker-class" href="#" data-bind="text: $data"></a>
       </div>
     </div>
   </header>
