@@ -8,15 +8,28 @@
 <body>
   <script src="node_modules/knockout/build/output/knockout-latest.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
-  <div id="panel">
-    <div id="location-list">
-      <ul data-bind="foreach: newArray">
-        <li>
-          <p data-bind="text: $data"></p>
-        </li>
-      </ul>
-  </div>
+
+  //Header
+  <header id="panel">
+    <div class="title">
+      <h1>Robin's Tubular/Radical Navigational Map App!</h1>
+    </div>
+    <div class="dropdown">
+      <a id="menu" onclick="myFunction()" class="dropbtn"> // The hamburger button = the dropdown button.
+        //svg or unicode
+          //link placeholder
+      </a>
+      <div id="myDropdown" data-bind="foreach: newArray" class="dropdown-content">
+        <input id="myInput" name="search-keyword" type="text" placeholder="Search..." reonkeyup="filterFunction()" required>
+        <a href="#" data-bind="text: $data"></a>
+      </div>
+    </div>
+  </header>
+
+  // Beginning of map.
   <div id="map"></div>
+
+  // Google Maps API-independent code.
   <script>
       var map;
       var markers = [];
