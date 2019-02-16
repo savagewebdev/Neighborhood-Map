@@ -1,18 +1,12 @@
-$(function() {
-  const newArray = []
+$(window).on('load', function () { // Google's "async defer" makes this delay necessary.
 
-  initMap().then(function(value) {
-    // $.each(window.markers, function(index) {
-    newArray.push(value);
-  });
-
-console.log(newArray)
-//   var viewModel = {
-//var timeoutI
-
-//     })
-// };
-//
-// ko.applyBindings(viewModel);
-// console.log(newArray);
+  function viewModel() {
+    var newArr = [];
+    $.each(window.markers, function(index) {
+      newArr.push(window.markers[index].title);
+    });
+    this.newArray = newArr;
+    console.log(newArr)
+  }
+  ko.applyBindings(new viewModel());
 });

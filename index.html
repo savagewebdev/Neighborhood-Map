@@ -10,10 +10,9 @@
   <script src="js/jquery-3.3.1.min.js"></script>
   <div id="panel">
     <div id="location-list">
-      <ul data-bind="foreach: loc">
+      <ul data-bind="foreach: newArray">
         <li>
-          <span data-bind="text: $data.title"></span>
-            <!-- <<a href="#" data-bind="click: mark">></a> -->
+          <p data-bind="text: $data"></p>
         </li>
       </ul>
   </div>
@@ -39,7 +38,7 @@
         var largeInfowindow = new google.maps.InfoWindow();
         var bounds = new google.maps.LatLngBounds();
 
-        new Promise((resolve) => {// The following group uses the location array to create an array of markers on initialize.
+        // The following group uses the location array to create an array of markers on initialize.
         for (var i = 0; i < locations.length; i++) {
           // Get the position from the location array.
           var position = locations[i].location;
@@ -62,11 +61,8 @@
         }
         // Extend the boundaries of the map for each marker
         map.fitBounds(bounds);
-        resolve($.each(window.markers, function(index) {
-          return window.markers[index].title;
-        }));
-      })
-}
+      }
+
       // This function populates the infowindow when the marker is clicked. We'll only allow
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
