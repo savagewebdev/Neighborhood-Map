@@ -14,57 +14,74 @@
       <ul data-bind="foreach: locales">
         <li>
           <span data-bind="text: $data.title"></span>
-            <<a href="#" data-bind="click: mark">></a>
+            <!-- <<a href="#" data-bind="click: mark">></a> -->
         </li>
       </ul>
   </div>
   <div id="map"></div>
   <script>
-  var map;
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 26.7135149, lng: -80.0579628},
-      zoom: 9
-      // foreach
-    });
-  }
-  var largeInfowindow = new google.maps.InfoWindow();
+      var map;
+      var markers = [];
 
+      function initMap() {
+        // Constructor creates a new map - only center and zoom are required.
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 40.7413549, lng: -73.9980244},
+          zoom: 13
+        });
 
-  // Style the markers a bit. This will be our listing marker icon.
-  var defaultIcon = makeMarkerIcon('0091ff');
+        var locations = [
+          {title: 'Secret Beach', location: {lat: 26.871856, lng: -80.049845}},
+          {title: 'Dockside Promenade', location: {lat: 26.946291, lng: -80.082824}},
+          {title: 'Sunnyside Urban Study Spot', location: {lat: 26.713548, lng: -80.055889}},
+          {title: 'Fun-N-Fellowship Locale', location: {lat: 26.930736, lng: -80.123895}},
+          {title: 'Midweek Gathering', location: {lat: 26.952620, lng: -80.138577}}
+        ];
 
-  // Create a "highlighted location" marker color for when the user
-  // mouses over the marker.
-  var highlightedIcon = makeMarkerIcon('FFFF24');
-  for (var i = 0; i < locales.length; i++) {
+        var largeInfowindow = new google.maps.InfoWindow();
+        var bounds = new google.maps.LatLngBounds();
+
+        // The following group uses the location array to create an array of markers on initialize.
+        for (var i = 0; i < locations.length; i++) {
           // Get the position from the location array.
-          var position = locales[i].location;
+          var position = locations[i].location;
           var title = locations[i].title;
           // Create a marker per location, and put into markers array.
           var marker = new google.maps.Marker({
+            map: map,
             position: position,
             title: title,
             animation: google.maps.Animation.DROP,
-            icon: defaultIcon,
             id: i
           });
           // Push the marker to our array of markers.
           markers.push(marker);
-          // Create an onclick event to open the large infowindow at each marker.
+          // Create an onclick event to open an infowindow at each marker.
           marker.addListener('click', function() {
             populateInfoWindow(this, largeInfowindow);
           });
-          // Two event listeners - one for mouseover, one for mouseout,
-          // to change the colors back and forth.
-          marker.addListener('mouseover', function() {
-            this.setIcon(highlightedIcon);
-          });
-          marker.addListener('mouseout', function() {
-            this.setIcon(defaultIcon);
+          bounds.extend(markers[i].position);
+        }
+        // Extend the boundaries of the map for each marker
+        map.fitBounds(bounds);
+      }
+
+      // This function populates the infowindow when the marker is clicked. We'll only allow
+      // one infowindow which will open at the marker that is clicked, and populate based
+      // on that markers position.
+      function populateInfoWindow(marker, infowindow) {
+        // Check to make sure the infowindow is not already opened on this marker.
+        if (infowindow.marker != marker) {
+          infowindow.marker = marker;
+          infowindow.setContent('<div>' + marker.title + '</div>');
+          infowindow.open(map, marker);
+          // Make sure the marker property is cleared if the infowindow is closed.
+          infowindow.addListener('closeclick',function(){
+            infowindow.setMarker = null;
           });
         }
-  </script>
+      }
+    </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDro45vOIgtFSG5F1l-gLr-0C57-RKI2BY
 &callback=initMap"
     async defer></script>
