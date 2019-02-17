@@ -6,8 +6,8 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
 // });
 
   function viewModel() {
-    var input = document.getElementById("myInput");
-    input.classList.add("data-bind='textInput'");
+    // var input = document.getElementById("myInput");
+    // input.classList.add(data-bind="event: { keypress: myFunction }");
     //
     this.myMenu = function() {
       //Toggles dropdown menu.
@@ -19,21 +19,22 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
       })
     }
 
-    // this.myFilter = function() { // Filters the display of list items.
-    //   var input, filter, ul, li, a, i;
-    //   input = document.getElementById("myInput");
-    //   filter = input.value.toUpperCase();
-    //   div = document.getElementById("myDropdown");
-    //   a = div.getElementsByTagName("a");
-    //   for (i = 0; i < a.length; i++) {
-    //     txtValue = a[i].textContent || a[i].innerText;
-    //     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-    //       a[i].style.display = "";
-    //     } else {
-    //       a[i].style.display = "none";
-    //     }
-    //   }
-    // }
+    this.myFilter = function() { // Filters the display of list items.
+      var input, filter, ul, li, a, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase(); // var filter is the input text to be matched against txtValue array items.
+      div = document.getElementById("myDropdown");
+      a = div.getElementsByTagName("a"); // Select all 'a' elements.
+      for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText; // txtValue is either the value of textContent or innerText during the loop.
+        if (txtValue.toUpperCase().indexOf(filter) > -1) { // If there are more than -1 matches whilst being typed...
+          a[i].style.display = ""; // it will be displayed.
+        } else {
+          a[i].style.display = "none";
+        }
+      }
+    return true;
+    }
   };
 
   ko.options.deferUpdates = true;
