@@ -9,8 +9,13 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
     console.log(newArr)
 
     function myFunction() {
+      //Toggles dropdown menu.
       document.getElementById("myDropdown").classList.toggle("show");
-    } // Shows the dropdown list.
+      //Toggles the hamburger animation.
+      var hamburger = document.querySelector(".hamburger");
+      hamburger.addEventListener("click", function() {
+        hamburger.classList.toggle("is-active");
+      }
 
     function filterFunction() {
       var input, filter, ul, li, a, i;

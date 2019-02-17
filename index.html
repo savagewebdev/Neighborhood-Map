@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Robin's Neighborhood Map Project</title>
   <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="bower_components/css-hamburgers/dist/hamburgers.css">
 </head>
 <body>
   <script src="node_modules/knockout/build/output/knockout-latest.js"></script>
@@ -15,10 +16,11 @@
       <h1>Robin's Tubular/Radical Navigational Map App!</h1>
     </div>
     <div class="dropdown">
-      <a id="menu" data-bind="click: myFunction()" class="dropbtn"> // The hamburger button = the dropdown button.
-        //svg or unicode
-          //link placeholder
-      </a>
+        <button class="hamburger hamburger--spin" data-bind="click: myFunction()" type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
       <div id="myDropdown" data-bind="foreach: newArray" class="dropdown-content"> // Remove placeholder when image search is conducted via yelp.
         <input id="myInput" name="search-keyword" type="text" placeholder="Search..." data-bind="textInput: placeholder" reonkeyup="filterFunction()" required>
         <a class="marker-class" href="#" data-bind="text: $data"></a>
