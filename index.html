@@ -21,9 +21,13 @@
             <span class="hamburger-inner"></span>
           </span>
         </button>
-      <div id="myDropdown" data-bind="foreach: newArray" class="dropdown-content"> // Remove placeholder when image search is conducted via yelp.
-        <input id="myInput" name="search-keyword" type="text" placeholder="Search..." data-bind="textInput: myFilter" required>
-        <a class="marker-class" href="#" data-bind="text: $data"></a>
+      <div id="myDropdown" class="dropdown-content"> <!--Remove placeholder when image search is conducted via yelp.-->
+        <input id="myInput" name="search-keyword" type="text" placeholder="Search..." data-bind="textInput" required>
+        <ul data-bind="foreach: newArray">
+          <li>
+            <a class="marker-class" href="#" data-bind="text: $data"></a>
+          </li>
+        </ul>
       </div>
     </div>
   </header>

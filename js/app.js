@@ -6,7 +6,6 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
       newArr.push(window.markers[index].title);
     });
     this.newArray = newArr;
-    console.log(newArr)
 
     this.myMenu = function() {
       //Toggles dropdown menu.
@@ -34,6 +33,7 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
       }
     }
   };
+  ko.options.deferUpdates = true;
   ko.applyBindings(new viewModel());
 
 });
