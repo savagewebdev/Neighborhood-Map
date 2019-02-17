@@ -15,7 +15,7 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
       var hamburger = document.querySelector(".hamburger");
       hamburger.addEventListener("click", function() {
         hamburger.classList.toggle("is-active");
-      }
+      })
 
     function filterFunction() {
       var input, filter, ul, li, a, i;

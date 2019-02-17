@@ -25,7 +25,7 @@ html, body {
   padding: 0;
 }
 
-.marker-class {
+a, .marker-class {
   color: white;
 }
 
