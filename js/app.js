@@ -16,8 +16,9 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
       hamburger.addEventListener("click", function() {
         hamburger.classList.toggle("is-active");
       })
+    }
 
-    function filterFunction() {
+    function filterFunction() { // Filters the display of list items.
       var input, filter, ul, li, a, i;
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase();
@@ -31,8 +32,8 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
           a[i].style.display = "none";
         }
       }
-    } // Filters the display of list items.
-
-  }
+    }
+  };
   ko.applyBindings(new viewModel());
+
 });
