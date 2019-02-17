@@ -6,16 +6,16 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
 // });
 
   function viewModel() { // Learn fetch more, then get new google maps api keys
-    this.myYelp = function() {
-      fetch()
-        url: `https://api.yelp.com/v3/businesses/search /photos?page=1&query=${searchedForText}`,
-        headers: {
-          "Authorization" : "Client-ID O-ktANhWMIF1JOm_Cj3hgg"
-        },
-        password: "wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx
-"
-      // }).done(addImage);
-    }
+//     this.myYelp = function() {
+//       fetch()
+//         url: `https://api.yelp.com/v3/businesses/search /photos?page=1&query=${searchedForText}`,
+//         headers: {
+//           "Authorization" : "Client-ID O-ktANhWMIF1JOm_Cj3hgg"
+//         },
+//         password: "wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx
+// "
+//       // }).done(addImage);
+//     }
 
     this.myMenu = function() {
       //Toggles dropdown menu.
