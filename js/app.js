@@ -8,7 +8,7 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
     this.newArray = newArr;
     console.log(newArr)
 
-    menu: function myFunction() {
+    this.myMenu = function() {
       //Toggles dropdown menu.
       document.getElementById("myDropdown").classList.toggle("show");
       //Toggles the hamburger animation.
@@ -16,9 +16,9 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
       hamburger.addEventListener("click", function() {
         hamburger.classList.toggle("is-active");
       })
-    },
+    }
 
-    filter: function filterFunction() { // Filters the display of list items.
+    this.myFilter = function() { // Filters the display of list items.
       var input, filter, ul, li, a, i;
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase();
