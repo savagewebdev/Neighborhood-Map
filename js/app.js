@@ -1,12 +1,14 @@
-$(window).on('load', function () { // Google's "async defer" makes this delay necessary.
+$(function(){  //$(window).on('load', function () { // Google's "async defer" makes this delay necessary.
+
+// var newArr = [];
+// $.each(window.markers, function(index) {
+//   newArr.push(window.markers[index].title);
+// });
 
   function viewModel() {
-    var newArr = [];
-    $.each(window.markers, function(index) {
-      newArr.push(window.markers[index].title);
-    });
-    this.newArray = newArr;
-
+    var input = document.getElementById("myInput");
+    input.classList.add("data-bind='textInput'");
+    //
     this.myMenu = function() {
       //Toggles dropdown menu.
       document.getElementById("myDropdown").classList.toggle("show");
@@ -17,22 +19,23 @@ $(window).on('load', function () { // Google's "async defer" makes this delay ne
       })
     }
 
-    this.myFilter = function() { // Filters the display of list items.
-      var input, filter, ul, li, a, i;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      div = document.getElementById("myDropdown");
-      a = div.getElementsByTagName("a");
-      for (i = 0; i < a.length; i++) {
-        txtValue = a[i].textContent || a[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          a[i].style.display = "";
-        } else {
-          a[i].style.display = "none";
-        }
-      }
-    }
+    // this.myFilter = function() { // Filters the display of list items.
+    //   var input, filter, ul, li, a, i;
+    //   input = document.getElementById("myInput");
+    //   filter = input.value.toUpperCase();
+    //   div = document.getElementById("myDropdown");
+    //   a = div.getElementsByTagName("a");
+    //   for (i = 0; i < a.length; i++) {
+    //     txtValue = a[i].textContent || a[i].innerText;
+    //     if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //       a[i].style.display = "";
+    //     } else {
+    //       a[i].style.display = "none";
+    //     }
+    //   }
+    // }
   };
+
   ko.options.deferUpdates = true;
   ko.applyBindings(new viewModel());
 
