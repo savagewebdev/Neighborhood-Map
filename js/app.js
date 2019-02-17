@@ -6,9 +6,6 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
 // });
 
   function viewModel() {
-    // var input = document.getElementById("myInput");
-    // input.classList.add(data-bind="event: { keypress: myFunction }");
-    //
     this.myMenu = function() {
       //Toggles dropdown menu.
       document.getElementById("myDropdown").classList.toggle("show");
@@ -34,6 +31,10 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
         }
       }
     return true;
+    }
+
+    this.myYelp = function() {
+
     }
   };
 
