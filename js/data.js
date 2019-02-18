@@ -6,6 +6,7 @@ function data() {
         {title: 'Generation Church, Jupiter', location: {lat: 26.930736, lng: -80.123895}},
         {title: 'Jupiter Inlet Lighthouse & Museum', location: {lat: 26.9479905, lng: -80.0859873}}
       ];
+  localStorage.notes = JSON.stringify(stashStorage);
 };
 
 //             init: function() {

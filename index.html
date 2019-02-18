@@ -37,7 +37,8 @@
         var map;
         var markers = [];
         var locations = [];
-
+        localStorage.notes(JSON.parse(locations));
+        
         function initMap() {
           // Constructor creates a new map - only center and zoom are required.
           map = new google.maps.Map(document.getElementById('map'), {
@@ -47,6 +48,7 @@
 
           var largeInfowindow = new google.maps.InfoWindow();
           var bounds = new google.maps.LatLngBounds();
+          localStorage.clear();
 
           // The following group uses the location array to create an array of markers on initialize.
           for (var i = 0; i < locations.length; i++) {
