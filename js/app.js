@@ -56,9 +56,7 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
         txtValue = a[i].textContent || a[i].innerText; // txtValue is either the value of textContent or innerText during the loop.
         if (txtValue.toUpperCase().indexOf(filter) > -1) { // If there are more than -1 matches whilst being typed...
           a[i].style.display = "";
-          // a[i].addListener('click', function() {
-          //   populateInfoWindow(this, largeInfowindow);
-          // }); // it will be displayed.
+// it will be displayed.
         } else {
           a[i].style.display = "none";
         }
