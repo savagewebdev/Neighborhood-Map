@@ -1,41 +1,50 @@
-$(function(){  //$(window).on('load', function () { // Google's "async defer" makes this delay necessary.
+$(function() {
 
-// var newArr = [];
-// $.each(window.markers, function(index) {
-//   newArr.push(window.markers[index].title);
-// });
+  var yelpModel = {
+    // Locations to be loaded.
+    locs: ['Jettys\'s Waterfront Restaurant', 'Pierless Beach, Juno Beach', 'Subculture Coffee, Climatis Street', 'Generation Church, Jupiter', 'Jupiter Inlet Lighthouse & Museum'],
+
+    // Fetch function info.
+    myFetch: function() {
+    fetch('https://api.yelp.com/v3/graphql', {
+          headers: {
+            "Content-Type: application/graphql",
+            Authorization: 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
+          },
+          method: "POST"
+        })
+      },
+
+    // Actual fetch information.
+    myRequest: function() {
+      for (let loc of locs) {
+          loc = new Data(`
+          {
+            search(term: "${this.loc}", location:"Florida") {
+              business {
+                name
+                  coordinates {
+                    latitude
+                    longitude
+                  }
+                  location {
+                    formatted_address
+                  }
+                photos
+                rating
+              }
+            }
+          }`
+          , yelpModel.myFetch);
+      }
+      .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
+      .then(placeholder) // or articles
+      .catch(err => requestError(err, 'Yelp!')); // Request error function...
+    };
+  };
+
 
   function viewModel() {
-
-    // this.myFetch = function() {
-    // fetch('https://api.yelp.com/v3/graphql', {
-    //       headers: {
-    //         "Content-Type: application/graphql",
-    //         Authorization: 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
-    //       },
-    //       method: "POST"
-    //     })
-    //       var myRequest = new Data(` {
-    //
-    //       }
-    //     }
-    //       , myFetch;
-    //     })
-
-
-
-    //
-    //       // -x is a REQUEST and -d is DATA.
-    //
-    //     .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
-    //     .then(addImage) // or articles
-    //     .catch(err => requestError(err, 'image')); // Request error function...
-    //  }); // with the error and that it was the 'image' function that failed.
-    // }
-    // this.myMenuClick = function() {
-    //   var clickMe = new populateInfoWindow(marker, infowindow);
-    // };
-
     this.myMenu = function() {
       //Toggles dropdown menu.
       document.getElementById("myDropdown").classList.toggle("show");
@@ -63,8 +72,8 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
       }
     return true;
     }
-  };
+  }
 
-  ko.options.deferUpdates = true;
+  ko.options.deferUpdates = false;
   ko.applyBindings(new viewModel());
 });
