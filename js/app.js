@@ -7,30 +7,31 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
 
   function viewModel() {
 
-    this.myFetch = function() {
-    fetch('https://api.yelp.com/v3/graphql', {
-          headers: {
-            "Content-Type: application/graphql",
-            Authorization: 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
-          },
-          method: "POST"
-        })
-          var myRequest = new Data(`
-            flowers.jpg'})
-        }
-          , myFetch;
-        })
+    // this.myFetch = function() {
+    // fetch('https://api.yelp.com/v3/graphql', {
+    //       headers: {
+    //         "Content-Type: application/graphql",
+    //         Authorization: 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
+    //       },
+    //       method: "POST"
+    //     })
+    //       var myRequest = new Data(` {
+    //
+    //       }
+    //     }
+    //       , myFetch;
+    //     })
 
 
 
-
-          // -x is a REQUEST and -d is DATA.
-
-        .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
-        .then(addImage) // or articles
-        .catch(err => requestError(err, 'image')); // Request error function...
-     }); // with the error and that it was the 'image' function that failed.
-    }
+    //
+    //       // -x is a REQUEST and -d is DATA.
+    //
+    //     .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
+    //     .then(addImage) // or articles
+    //     .catch(err => requestError(err, 'image')); // Request error function...
+    //  }); // with the error and that it was the 'image' function that failed.
+    // }
 
     this.myMenu = function() {
       //Toggles dropdown menu.
