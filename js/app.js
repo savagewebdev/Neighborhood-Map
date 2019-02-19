@@ -32,6 +32,9 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
     //     .catch(err => requestError(err, 'image')); // Request error function...
     //  }); // with the error and that it was the 'image' function that failed.
     // }
+    // this.myMenuClick = function() {
+    //   var clickMe = new populateInfoWindow(marker, infowindow);
+    // };
 
     this.myMenu = function() {
       //Toggles dropdown menu.
@@ -41,10 +44,10 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
       hamburger.addEventListener("click", function() {
         hamburger.classList.toggle("is-active");
       })
-    }
+    };
 
     this.myFilter = function() { // Filters the display of list items.
-      var input, filter, ul, li, a, i;
+      var input, filter, a, i;
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase(); // var filter is the input text to be matched against txtValue array items.
       div = document.getElementById("myDropdown");
@@ -52,7 +55,10 @@ $(function(){  //$(window).on('load', function () { // Google's "async defer" ma
       for (i = 0; i < a.length; i++) {
         txtValue = a[i].textContent || a[i].innerText; // txtValue is either the value of textContent or innerText during the loop.
         if (txtValue.toUpperCase().indexOf(filter) > -1) { // If there are more than -1 matches whilst being typed...
-          a[i].style.display = ""; // it will be displayed.
+          a[i].style.display = "";
+          // a[i].addListener('click', function() {
+          //   populateInfoWindow(this, largeInfowindow);
+          // }); // it will be displayed.
         } else {
           a[i].style.display = "none";
         }

@@ -22,7 +22,7 @@
           <input id="myInput" name="search-keyword" type="text" data-bind="event: { keypress: myFilter, keyup: myFilter }" placeholder="Search..." required>
           <ul data-bind="foreach: locations">
             <li>
-              <a class="marker-class" href="#" data-bind="text: $data.title, click: populateInfoWindow"></a>
+              <a class="marker-class" data-bind="text: $data.title"></a>
             </li>
           </ul>
         </div>
@@ -36,6 +36,7 @@
     <script>
         var map;
         var markers = [];
+
         var locations = [
               {title: 'Peirless Beach', location: {lat: 26.871856, lng: -80.049845}},
               {title: 'Jettys\'s Waterfront Restaurant', location: {lat: 26.946291, lng: -80.082824}},
@@ -59,7 +60,7 @@
             // Get the position from the location array.
             var position = locations[i].location;
             var title = locations[i].title;
-            // Create a marker per location, and put into markers array.
+            var anchor = div.getElementsByTagName("a");// Create a marker per location, and put into markers array.
             var marker = new google.maps.Marker({
               map: map,
               position: position,
@@ -73,6 +74,9 @@
             marker.addListener('click', function() {
               populateInfoWindow(this, largeInfowindow);
             });
+            anchor.addListener('click', function() {
+              populateInfoWindow(this, largeInfowindow);// document.getElementById(".marker-class");
+
             bounds.extend(markers[i].position);
           }
           // Extend the boundaries of the map for each marker
@@ -83,7 +87,6 @@
         // one infowindow which will open at the marker that is clicked, and populate based
         // on that markers position.
         function populateInfoWindow(marker, infowindow) {
-          // Check to make sure the infowindow is not already opened on this marker.
           if (infowindow.marker != marker) {
             infowindow.marker = marker;
             infowindow.setContent('<div>' + marker.title + '</div>');
@@ -93,6 +96,9 @@
               infowindow.setMarker = null;
             });
           }
+          // for (i = 0; i < a.length; i++) {
+          //
+          // }
         }
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ440LQoPS2rYq3dy6-WyJhzQ45DrZRfc&callback=initMap" async defer></script>
