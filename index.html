@@ -22,7 +22,7 @@
           <input id="myInput" name="search-keyword" type="text" data-bind="event: { keypress: myFilter, keyup: myFilter }" placeholder="Search..." required>
           <ul data-bind="foreach: locations">
             <li>
-              <a class="marker-class" href="#" data-bind="text: $data.title"></a>
+              <select class="marker-class" href="#" data-bind="text: $data.title, click: populateInfoWindow"></select>
             </li>
           </ul>
         </div>
