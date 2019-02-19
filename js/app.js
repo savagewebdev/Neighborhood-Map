@@ -17,10 +17,10 @@ $(function() {
 
     // Actual fetch information.
     myRequest: function() {
-      for (let loc of locs) {
+      for (let loc of this.locs) {
           loc = new Data(`
           {
-            search(term: "${this.loc}", location:"Florida") {
+            search(term: "${loc}", location:"Florida") {
               business {
                 name
                   coordinates {
@@ -35,16 +35,21 @@ $(function() {
               }
             }
           }`
-          , yelpModel.myFetch);
+          , this.myFetch);
       }
       .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
-      .then(placeholder) // or articles
-      .catch(err => requestError(err, 'Yelp!')); // Request error function...
-    };
+      .then(viewModel) // or articles
+      .catch('Yelp!')); // Request error function...
+    },
   };
 
+  function viewModel(data) {
+    // let arr = data.map();
+    // for (let prop in arr) {
+    //   markers.push(prop)
+    // },
+    console.log(data);
 
-  function viewModel() {
     this.myMenu = function() {
       //Toggles dropdown menu.
       document.getElementById("myDropdown").classList.toggle("show");
