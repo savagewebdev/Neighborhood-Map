@@ -3,6 +3,15 @@
 <head>
   <meta charset="utf-8">
   <title>Robin's Neighborhood Map Project</title>
+  {{ if development }}
+                <!-- regenerated files -->
+                <link href="http://localhost:9000/client.css" rel="stylesheet" type="text/css" />
+                <script src="http://localhost:9000/client.js"></script>
+            {{ else if (production) }}
+                <!-- static files -->
+                <link href="client.css" rel="stylesheet" type="text/css" />
+                <script src="client.js"></script>
+            {{ endif }}
   <link rel="stylesheet" href="styles/index.css">
   <link rel="stylesheet" href="bower_components/css-hamburgers/dist/hamburgers.css">
 </head>
@@ -126,7 +135,7 @@
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ440LQoPS2rYq3dy6-WyJhzQ45DrZRfc&callback=initMap" async defer></script>
       <script src="js/jquery-3.3.1.min.js"></script>
-      <script src="node_modules/knockout/build/output/knockout-latest.js"></script>
+      <script src="node_modules/knockout/build/output/knockout-3.4.2.js"></script>
       <script src="js/app.js"></script>
   </body>
 </html>
