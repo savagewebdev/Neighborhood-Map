@@ -1,46 +1,49 @@
 $(function() {
 
-  function viewModel() {
-    // var places = ['E7M5gali37pFJyB6_NdWog', 'auooS7-lyq1715DsiIJv2Q', 't_eOLU0or1p5ZbPLuONrpQ', 'WKG6LglfNS5CRF96WUUkAw', 'jcb6JgoVIgnnZ2mP-Q4Akw'];
-    //
-    // this.myFetch function() {
-    //   for (let place of places) {
-    //   fetch('https://api.yelp.com/v3/graphql', {
-    //       headers: {
-    //         "Content-Type" : "application/graphql",
-    //         "Authorization" : 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
-    //       },
-    //       method: "POST",
-    //       data: `
-    //       {
-    //         business(id: "${place}") {
-    //           name
-    //           coordinates {
-    //             latitude
-    //             longitude
-    //           }
-    //           location {
-    //             formatted_address
-    //           }
-    //           photos
-    //           rating
-    //         }
-    //       }`
-    //     })
-    //
-    //   .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
-    //   .then(myFunction)
-    //   .catch('Yelp!'); // Request error function...
-    //   }
-    // };
+  var yelpModel = {
+    // Locations to be loaded.
+    locs: ['Jettys\'s Waterfront Restaurant', 'Pier-less Beach, Juno Beach', 'Subculture Coffee, Climatis Street', 'Generation Church, Jupiter', 'Jupiter Inlet Lighthouse & Museum'],
 
-    // this.myFunction = function(data) {
-    //   locations.forEach(function(element) {
-    //     element.push(locations);
-    //   })
-    // };
+    // Fetch function info.
+    myFetch: {
+      for (let loc of this.locs) {
+      fetch('https://api.yelp.com/v3/graphql', {
+          headers: {
+            "Content-Type" : "application/graphql",
+            "Authorization" : 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
+          },
+          method: "POST",
+          data: `
+          {
+            search(term: "${loc}", location:"Florida") {
+              business {
+                name
+                  coordinates {
+                    latitude
+                    longitude
+                  }
+                  location {
+                    formatted_address
+                  }
+                photos
+                rating
+              }
+            }
+          }`
+        })
 
+      .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
+      .then(data => locations) // or articles
+      .catch('Yelp!')); // Request error function...
+    }
+  };
 
+  function viewModel(data) {
+    // let arr = data.map();
+    // for (let prop in arr) {
+    //   markers.push(prop)
+    // },
+    console.log(data);
 
     this.myMenu = function() {
       //Toggles dropdown menu.
@@ -71,7 +74,6 @@ $(function() {
     }
   }
 
-  ko.options.deferUpdates = true;
+  ko.options.deferUpdates = false;
   ko.applyBindings(new viewModel());
-
 });

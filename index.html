@@ -20,7 +20,7 @@
           </button>
         <div id="myDropdown" class="dropdown-content"> <!--Remove placeholder when image search is conducted via yelp.-->
           <input id="myInput" name="search-keyword" type="text" data-bind="event: { keypress: myFilter, keyup: myFilter }" placeholder="Search..." required>
-          <ul data-bind="foreach: myLocations">
+          <ul data-bind="foreach: locations"> 
             <li>
               <a class="marker-class" data-bind="text: $data.title"></a>  <!-- "keypress: create a function below which " -->
             </li>
@@ -34,6 +34,7 @@
 
     <!-- Google Maps API-independent code. -->
     <script>
+<<<<<<< HEAD
 
     https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=CLIENT_ID&client_secret=CLIENT_SECRET&v=YYYYMMDD
 
@@ -56,6 +57,8 @@ T&v=20180323&limit=1&ll=40.7413549,-73.9980244&query=cigar')
         element.push(locations);
       })
     };
+=======
+>>>>>>> parent of 3bea4aa... Global test
         var map;
         var markers = [];
         var locations = [];
