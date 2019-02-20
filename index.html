@@ -34,6 +34,22 @@
 
     <!-- Google Maps API-independent code. -->
     <script>
+    var http = require('http'),
+        httpProxy = require('http-proxy');
+    //
+    // Create your proxy server and set the target in the options.
+    //
+    httpProxy.createProxyServer({target:'http://localhost:9000'}).listen(8000); // See (†)
+
+    //
+    // Create your target server
+    //
+    http.createServer(function (req, res) {
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.write('request successfully proxied!' + '\n' + JSON.stringify(req.headers, true, 2));
+      res.end();
+    }).listen(9000);
+
     var places = ['E7M5gali37pFJyB6_NdWog', 'auooS7-lyq1715DsiIJv2Q', 't_eOLU0or1p5ZbPLuONrpQ', 'WKG6LglfNS5CRF96WUUkAw', 'jcb6JgoVIgnnZ2mP-Q4Akw'];
     for (let place of places) {
     fetch('https://api.yelp.com/v3/graphql', {
