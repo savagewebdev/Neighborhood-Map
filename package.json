@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "grunt": "^1.0.3",
+    "http-proxy": "^1.17.0",
     "node-yelp-api": "^1.1.0"
   },
   "devDependencies": {
