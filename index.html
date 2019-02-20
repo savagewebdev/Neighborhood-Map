@@ -34,48 +34,16 @@
 
     <!-- Google Maps API-independent code. -->
     <script>
-    var http = require('http'),
-        httpProxy = require('http-proxy');
-    //
-    // Create your proxy server and set the target in the options.
-    //
-    httpProxy.createProxyServer({target:'http://localhost:9000'}).listen(8000); // See (†)
 
-    //
-    // Create your target server
-    //
-    http.createServer(function (req, res) {
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.write('request successfully proxied!' + '\n' + JSON.stringify(req.headers, true, 2));
-      res.end();
-    }).listen(9000);
-
-    var places = ['E7M5gali37pFJyB6_NdWog', 'auooS7-lyq1715DsiIJv2Q', 't_eOLU0or1p5ZbPLuONrpQ', 'WKG6LglfNS5CRF96WUUkAw', 'jcb6JgoVIgnnZ2mP-Q4Akw'];
-    for (let place of places) {
-    fetch('https://api.yelp.com/v3/graphql', {
-      method: "POST",
-      mode: 'no-cors',
-      headers: {
-        // "Access-Control-Allow-Origin" : 'file:///Users/robinsavage/Documents/GitHub/neighborhood-map/index.html',
-        "Content-Type" : "application/graphql",
-        "Authorization" : 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
-      },
-      data: `
-      {
-        business(id: "${place}") {
-          name
-          coordinates {
-            latitude
-            longitude
-          }
-          location {
-            formatted_address
-          }
-          photos
-          rating
-        }
-      }`
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=QTQRY21NJZZY0I0ESMVKZONLKOPM05NU0CMJWVM2KCZWJHQ1
+&client_secret=CXVTOBDLMYPU5WNRT1IFIH31ZFCV03TUDKQBPSSTPHUJAAILW
+T&v=20180323&limit=1&ll=40.7413549,-73.9980244&query=cigar')
+    .then(function() {
+        // Code for handling API response
     })
+    .catch(function() {
+        // Code for handling errors
+    });
 
     .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
     .then(myFunction)
@@ -142,6 +110,7 @@
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ440LQoPS2rYq3dy6-WyJhzQ45DrZRfc&callback=initMap" async defer></script>
       <script src="js/jquery-3.3.1.min.js"></script>
+      <script src="node_modules/ng"></script>
       <script src="node_modules/knockout/build/output/knockout-3.4.2.js"></script>
       <script src="js/app.js"></script>
   </body>
