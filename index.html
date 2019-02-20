@@ -20,7 +20,7 @@
           </button>
         <div id="myDropdown" class="dropdown-content"> <!--Remove placeholder when image search is conducted via yelp.-->
           <input id="myInput" name="search-keyword" type="text" data-bind="event: { keypress: myFilter, keyup: myFilter }" placeholder="Search..." required>
-          <ul data-bind="foreach: locations"> 
+          <ul data-bind="foreach: myLocations">
             <li>
               <a class="marker-class" data-bind="text: $data.title"></a>  <!-- "keypress: create a function below which " -->
             </li>
@@ -34,6 +34,41 @@
 
     <!-- Google Maps API-independent code. -->
     <script>
+    var places = ['E7M5gali37pFJyB6_NdWog', 'auooS7-lyq1715DsiIJv2Q', 't_eOLU0or1p5ZbPLuONrpQ', 'WKG6LglfNS5CRF96WUUkAw', 'jcb6JgoVIgnnZ2mP-Q4Akw'];
+    for (let place of places) {
+    fetch('https://api.yelp.com/v3/graphql', {
+        headers: {
+          "Content-Type" : "application/graphql",
+          "Authorization" : 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
+        },
+        method: "POST",
+        data: `
+        {
+          business(id: "${place}") {
+            name
+            coordinates {
+              latitude
+              longitude
+            }
+            location {
+              formatted_address
+            }
+            photos
+            rating
+          }
+        }`
+      })
+
+    .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
+    .then(myFunction)
+    .catch('Yelp!'); // Request error function...
+    }
+
+    function myFunction(data) {
+      data.forEach(function(element) {
+        element.push(locations);
+      })
+    };
         var map;
         var markers = [];
         var locations = [];
