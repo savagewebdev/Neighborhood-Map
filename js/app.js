@@ -1,49 +1,36 @@
 $(function() {
 
-  var yelpModel = {
-    // Locations to be loaded.
-    locs: ['Jettys\'s Waterfront Restaurant', 'Pier-less Beach, Juno Beach', 'Subculture Coffee, Climatis Street', 'Generation Church, Jupiter', 'Jupiter Inlet Lighthouse & Museum'],
-
-    // Fetch function info.
-    myFetch: {
-      for (let loc of this.locs) {
-      fetch('https://api.yelp.com/v3/graphql', {
-          headers: {
-            "Content-Type" : "application/graphql",
-            "Authorization" : 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
-          },
-          method: "POST",
-          data: `
-          {
-            search(term: "${loc}", location:"Florida") {
-              business {
-                name
-                  coordinates {
-                    latitude
-                    longitude
-                  }
-                  location {
-                    formatted_address
-                  }
-                photos
-                rating
-              }
-            }
-          }`
-        })
-
-      .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
-      .then(data => locations) // or articles
-      .catch('Yelp!')); // Request error function...
-    }
-  };
-
-  function viewModel(data) {
-    // let arr = data.map();
-    // for (let prop in arr) {
-    //   markers.push(prop)
-    // },
-    console.log(data);
+  function viewModel() {
+    // this.myFetch = function() {
+    //   for (let place of places) {
+    //   fetch('https://api.yelp.com/v3/graphql', {
+    //       headers: {
+    //         "Content-Type" : "application/graphql",
+    //         "Authorization" : 'Bearer wgy6PMFp-MWG2EUJz40Le2W7p0JagF_9q8lpGxmSqq2_xzGmUErWyg7zKTe5NicC5HAFuQB06b2opPXJkO2OK2oZAWDDMSdrS2I_nmpixKLJO_xQc6Dvw3OtWnVoXHYx'
+    //       },
+    //       method: "POST",
+    //       data: `
+    //       {
+    //         business(id: "${place}") {
+    //           name
+    //           coordinates {
+    //             latitude
+    //             longitude
+    //           }
+    //           location {
+    //             formatted_address
+    //           }
+    //           photos
+    //           rating
+    //         }
+    //       }`
+    //   })
+    //
+    //   .then(response => response.JSON()) // Take the response parameter data from the API and return its value to JSON format.
+    //   .then(dataConverter) // or articles
+    //   .catch('Yelp!'); // Request error function...
+    // }
+  // };
 
     this.myMenu = function() {
       //Toggles dropdown menu.
