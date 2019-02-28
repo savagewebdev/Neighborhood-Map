@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "bower": "^1.8.8",
+    "generator-angular": "^0.16.0",
     "http-proxy": "^1.17.0",
-    "node-yelp-api": "^1.1.0"
+    "node-yelp-api": "^1.1.0",
+    "yarn": "^1.13.0"
   },
   "devDependencies": {
     "grunt": "^0.4.1",
